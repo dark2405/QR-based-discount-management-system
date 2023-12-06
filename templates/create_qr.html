@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='styles.css') }}">
+</head>
+
+<body>
+    <h1>Create QR Code</h1>
+
+    <form method="POST" action="/create-qr">
+        <label for="amount">Amount:</label>
+        <input type="text" id="amount" name="amount" required>
+        <button type="submit">Generate QR Code</button>
+    </form>
+
+    {% if result %}
+        <p>Redeem your QR code at: <a href="{{ result[0] }}">{{ result[0] }}</a></p>
+        <img src="{{ url_for('static', filename=result[1][7:]) }}" alt="QR Code">
+
+        <div class="download-buttons">
+            <a href="{{ url_for('download_qr', qr_path=result[1][7:], qr_format='png') }}" download="qr_code.png">
+                <button>Download as PNG</button>
+            </a>
+
+            <a href="{{ url_for('download_qr', qr_path=result[1][7:], qr_format='pdf') }}" download="qr_code.pdf">
+                <button>Download as PDF</button>
+            </a>
+        </div>
+    {% endif %}
+
+</body>
+
+</html>

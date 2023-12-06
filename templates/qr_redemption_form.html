@@ -1,0 +1,19 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+    <title>QR Code Redemption</title>
+</head>
+<body>
+    <h1>QR Code Redemption</h1>
+    <form method="POST" action="/redeem-qr/{{ qr_id }}">
+        <label for="contractor_phone">Contractor Phone:</label>
+        <input type="tel" id="contractor_phone" name="contractor_phone" pattern="[0-9]{10}" required><br>
+        <button type="submit">Redeem QR Code</button>
+    </form>
+</body>
+</html>
